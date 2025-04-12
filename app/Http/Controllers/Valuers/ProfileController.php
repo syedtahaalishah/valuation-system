@@ -6,6 +6,7 @@ use App\Traits\FileUpload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -32,22 +33,24 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
-            'language' => ['nullable'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone_number' => 'required',
+            'reac_number' => 'required',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:5000',
         ]);
 
         $user->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'description' => $request->description,
-            'language' => $request->language,
             'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'reac_number' => $request->reac_number,
+
         ]);
 
-        return response()->json(['successMessage' => 'Profile info updated successfully']);
+        return response()->json(['message' => 'Profile info updated successfully']);
     }
 
     /**
@@ -78,8 +81,20 @@ class ProfileController extends Controller
             $user->update(['avatar' => $imageName]);
         }
 
-        return response()->json(['successMessage' => 'Profile picture updated successfully']);
+        return response()->json(['message' => 'Profile picture updated successfully']);
     }
 
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
 
+        $validated = $request->validate([
+            'current_password' => 'required|current_password',
+            'new_password' => 'required|min:8|different:current_password|confirmed',
+        ]);
+
+        $user->update(['password' => Hash::make($validated['new_password'])]);
+
+        return response()->json(['reset' => true, 'message' => 'Password updated successfully']);
+    }
 }
