@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\Valuers;
 
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
@@ -12,13 +12,13 @@ class ProfileController extends Controller
     use FileUpload;
 
     /**
-     * Display the student profile page.
+     * Display the valuer profile page.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('screens.student.profile');
+        return view('valuers.profile.index');
     }
 
     /**

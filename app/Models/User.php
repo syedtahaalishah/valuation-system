@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function valuationReports()
+    {
+        return $this->hasMany(Report::class);
+    }
 }
