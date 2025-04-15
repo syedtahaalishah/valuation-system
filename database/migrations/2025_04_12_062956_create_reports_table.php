@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('market_value', 15, 2);
             $table->decimal('forced_sale_value', 15, 2);
             $table->string('gps_coordinates');
+            $table->string('valuing_company');
             $table->string('qr_code')->nullable();
             $table->timestamps();
         });

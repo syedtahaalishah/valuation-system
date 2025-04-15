@@ -6,11 +6,16 @@ use App\Models\Report;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class VerifyController extends Controller
+class ReportController extends Controller
 {
     public function index(Request $request)
     {
         return view('web.index');
+    }
+
+    public function report(Report $report)
+    {
+        return view('web.report', get_defined_vars());
     }
 
     public function verify(Request $request)
@@ -23,12 +28,13 @@ class VerifyController extends Controller
 
         if (!$report) {
             return response()->json([
-                'message' => 'Serial number not found.',
+                'message' => 'Report not found with this serial number.',
             ], 404);
         }
 
         return response()->json([
-            'message' => 'This report is genuine.',
+            'message' => 'This valuation report is authentic.',
+            'html' => view('includes.report-table', ['report' => $report])->render(),
         ], 200);
     }
 }

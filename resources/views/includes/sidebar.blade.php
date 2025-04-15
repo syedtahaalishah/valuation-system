@@ -48,6 +48,13 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    <!-- Nav Item - Profile -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('web.index') }}">
+            <i class="fas fa-file-alt"></i>
+            <span>Back To Verification</span></a>
+    </li>
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="d-none d-md-inline text-center">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

@@ -20,6 +20,7 @@ class Report extends Model
         'market_value',
         'forced_sale_value',
         'gps_coordinates',
+        'valuing_company',
         'qr_code'
     ];
 
@@ -38,7 +39,7 @@ class Report extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->serial_number = (string) Str::uuid();
+            $model->serial_number = (string) strtolower(Str::random(12));
         });
     }
 }

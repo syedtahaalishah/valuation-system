@@ -126,7 +126,7 @@
                     Swal.fire({
                         timer: 3000,
                         icon: 'success',
-                        iconColor: '#140a62',
+                        iconColor: '#1cc88a',
                         showConfirmButton: false,
                         text: response.data.message,
                     })
@@ -152,7 +152,7 @@
                         Swal.fire({
                             timer: 3000,
                             icon: 'error',
-                            iconColor: '#140a62',
+                            iconColor: '#e02d1b',
                             showConfirmButton: false,
                             text: error.response.data.message,
                         })

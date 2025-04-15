@@ -2,12 +2,10 @@
 @section('title', 'Property Valuation - Verify')
 @section('content')
     <div class="container">
-        <!-- Outer Row -->
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden my-5 border-0 shadow-lg">
                     <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
@@ -15,7 +13,7 @@
                                         <h1 class="h4 mb-2 text-gray-900">Verify Report</h1>
                                         <p class="mb-4">Just enter report serial number below to verify your valuation report.</p>
                                     </div>
-                                    <form action="{{ route('web.verify') }}" method="post" id="ajaxform" class="user">
+                                    <form action="{{ route('web.verify') }}" method="post" id="ajaxform" class="user mb-5">
                                         @csrf
                                         <div class="input-group">
                                             <input type="text" class="form-control form-control-user"
@@ -26,6 +24,19 @@
                                         </div>
                                         <div id="serial_number"></div>
                                     </form>
+
+                                    {{-- Go to login or dashboard page --}}
+                                    <div class="text-center">
+                                        @auth
+                                            <a class="small" href="{{ route('dashboard.index') }}">
+                                                Go to Dashboard
+                                            </a>
+                                        @else
+                                            <a class="small" href="{{ route('login') }}">
+                                                Already have an account? Login!
+                                            </a>
+                                        @endauth
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -68,13 +79,16 @@
                         Swal.fire({
                             timer: 3000,
                             icon: 'success',
-                            iconColor: '#140a62',
+                            iconColor: '#1cc88a',
                             showConfirmButton: false,
                             text: response.data.message,
                         })
 
                         form.trigger('reset');
+                    }
 
+                    if(response.data.html){
+                        $('#ajaxform').after(response.data.html);
                     }
                 })
                 .catch(function(error) {
@@ -91,10 +105,13 @@
 
                         });
                     } else {
+
+                        $(".table").remove();
+
                         Swal.fire({
                             timer: 3000,
                             icon: 'error',
-                            iconColor: '#140a62',
+                            iconColor: '#e02d1b',
                             showConfirmButton: false,
                             text: error.response.data.message,
                         })

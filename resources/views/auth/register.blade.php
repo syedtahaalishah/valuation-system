@@ -114,7 +114,7 @@
                         Swal.fire({
                             timer: 3000,
                             icon: 'error',
-                            iconColor: '#140a62',
+                            iconColor: '#e02d1b',
                             showConfirmButton: false,
                             text: error.response.data.message,
                         })

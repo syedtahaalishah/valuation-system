@@ -62,11 +62,16 @@
 
                     <!-- GPS Coordinates -->
                     <div class="form-group row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label for="gps_coordinates" class="form-label">GPS Coordinates</label>
                             <input type="text" name="gps_coordinates" id="gps_coordinates"
                                 class="form-control form-control-user" placeholder="e.g., -24.658333, 25.908056">
                             <small class="form-text text-muted">Format: latitude, longitude (decimal degrees)</small>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="valuing_company" class="form-label">Valuing Company</label>
+                            <input type="text" name="valuing_company" id="valuing_company"
+                                class="form-control form-control-user">
                         </div>
                     </div>
 
@@ -115,7 +120,7 @@
                     Swal.fire({
                         timer: 3000,
                         icon: 'success',
-                        iconColor: '#140a62',
+                        iconColor: '#1cc88a',
                         showConfirmButton: false,
                         text: response.data.message,
                     })
@@ -141,7 +146,7 @@
                         Swal.fire({
                             timer: 3000,
                             icon: 'error',
-                            iconColor: '#140a62',
+                            iconColor: '#e02d1b',
                             showConfirmButton: false,
                             text: error.response.data.message,
                         })
