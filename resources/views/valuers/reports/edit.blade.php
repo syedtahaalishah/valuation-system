@@ -15,7 +15,7 @@
                         <div class="col-sm-12">
                             <label for="location" class="form-label">Location</label>
                             <input type="text" name="location" id="location" class="form-control form-control-user"
-                                placeholder="e.g., Gaborone, Block 5" value="{{ old('location', $report->location) }}">
+                                placeholder="Enter property address (e.g., Gaborone, Block 5, Plot 123)" value="{{ old('location', $report->location) }}">
                         </div>
                     </div>
 
@@ -24,12 +24,12 @@
                         <div class="col-sm-6 mb-sm-0 mb-3">
                             <label for="suburb" class="form-label">Suburb/Kgotla</label>
                             <input type="text" name="suburb" id="suburb" class="form-control form-control-user"
-                                placeholder="e.g., Broadhurst" value="{{ old('suburb', $report->suburb) }}">
+                                placeholder="Enter neighborhood area (e.g., Broadhurst, Tlokweng)" value="{{ old('suburb', $report->suburb) }}">
                         </div>
                         <div class="col-sm-6">
                             <label for="plot_number" class="form-label">Plot Number</label>
                             <input type="text" name="plot_number" id="plot_number" class="form-control form-control-user"
-                                placeholder="e.g., 12345" value="{{ old('plot_number', $report->plot_number) }}">
+                                placeholder="Enter official plot number (e.g., 54321)" value="{{ old('plot_number', $report->plot_number) }}">
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                         <div class="col-sm-6">
                             <label for="signing_valuer" class="form-label">Signing Valuer</label>
                             <input type="text" name="signing_valuer" id="signing_valuer"
-                                class="form-control form-control-user" placeholder="Full name" value="{{ old('signing_valuer', $report->signing_valuer) }}">
+                                class="form-control form-control-user" placeholder="Enter valuer's full name (e.g., John B. Smith)" value="{{ old('signing_valuer', $report->signing_valuer) }}">
                         </div>
                     </div>
 
@@ -52,12 +52,12 @@
                         <div class="col-sm-6 mb-sm-0 mb-3">
                             <label for="market_value" class="form-label">Open Market Value (BWP)</label>
                             <input type="number" step="0.01" name="market_value" id="market_value"
-                                class="form-control form-control-user" placeholder="0.00" value="{{ old('market_value', $report->market_value) }}">
+                                class="form-control form-control-user" placeholder="Enter amount (e.g., 1500000.00)" value="{{ old('market_value', $report->market_value) }}">
                         </div>
                         <div class="col-sm-6">
                             <label for="forced_sale_value" class="form-label">Forced Sale Value (BWP)</label>
                             <input type="number" step="0.01" name="forced_sale_value" id="forced_sale_value"
-                                class="form-control form-control-user" placeholder="0.00" value="{{ old('forced_sale_value', $report->forced_sale_value) }}">
+                                class="form-control form-control-user" placeholder="Enter amount (e.g., 1200000.00)" value="{{ old('forced_sale_value', $report->forced_sale_value) }}">
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@
                         <div class="col-sm-12">
                             <label for="gps_coordinates" class="form-label">GPS Coordinates</label>
                             <input type="text" name="gps_coordinates" id="gps_coordinates"
-                                class="form-control form-control-user" placeholder="e.g., -24.658333, 25.908056" value="{{ old('gps_coordinates', $report->gps_coordinates) }}">
+                                class="form-control form-control-user" placeholder="Enter coordinates (e.g., -24.658333, 25.908056)" value="{{ old('gps_coordinates', $report->gps_coordinates) }}">
                             <small class="form-text text-muted">Format: latitude, longitude (decimal degrees)</small>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="form-group row mt-4">
                         <div class="col-sm-12">
                             <button type="submit" class="btn btn-primary btn-user btn-block py-3">
-                                Update
+                                Update Report
                             </button>
                         </div>
                     </div>

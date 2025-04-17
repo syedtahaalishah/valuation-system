@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('forced_sale_value', 15, 2);
             $table->string('gps_coordinates');
             $table->string('valuing_company');
+            $table->string('insurance_replacement_value');
             $table->string('qr_code')->nullable();
             $table->timestamps();
         });

@@ -10,18 +10,19 @@ class Report extends Model
     protected $append = ['qr_code_url'];
 
     protected $fillable = [
-        'user_id',
-        'serial_number',
-        'location',
         'suburb',
+        'qr_code',
+        'user_id',
+        'location',
         'plot_number',
+        'market_value',
+        'serial_number',
         'valuation_date',
         'signing_valuer',
-        'market_value',
-        'forced_sale_value',
         'gps_coordinates',
         'valuing_company',
-        'qr_code'
+        'forced_sale_value',
+        'insurance_replacement_value',
     ];
 
     public function getRouteKeyName()
@@ -37,7 +38,6 @@ class Report extends Model
     protected static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
             $model->serial_number = (string) strtolower(Str::random(12));
         });

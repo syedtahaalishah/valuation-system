@@ -74,6 +74,7 @@ class ReportController extends Controller
             'forced_sale_value' => 'required|numeric',
             'gps_coordinates' => 'required|string',
             'valuing_company' => 'required|string',
+            'insurance_replacement_value' => 'required|string',
         ]);
 
         $report = auth()->user()->valuationReports()->create($validated);
@@ -91,7 +92,7 @@ class ReportController extends Controller
         $qrCode = new QRCode($options);
         $filename = $report->serial_number . '.png';
         $path = 'qrcodes/' . $filename;
-        
+
         $qrCode->render(
             route('web.report', $report->serial_number),
             public_path($path)

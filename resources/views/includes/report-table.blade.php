@@ -41,6 +41,11 @@
             <td>{{ $report->valuing_company }}</td>
         </tr>
         <tr>
+            <th>Insurance Replacement Value</th>
+            <td>{{ $report->insurance_replacement_value }}</td>
+        </tr>
+
+        <tr>
             <th>QR Code</th>
             <td>
                 <img src="{{ $report->qr_code_url }}" width="100">

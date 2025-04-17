@@ -11,8 +11,8 @@
                 </div>
                 <div class="mt-4">
                     <a href="{{ route('reports.index') }}" class="btn btn-secondary">Back to Reports</a>
-                    <a href="{{ route('reports.edit', $report->id) }}" class="btn btn-primary">Edit Report</a>
-                    <form action="{{ route('reports.destroy', $report->id) }}" method="POST" style="display: inline;">
+                    <a href="{{ route('reports.edit', $report->serial_number) }}" class="btn btn-primary">Edit Report</a>
+                    <form action="{{ route('reports.destroy', $report->serial_number) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete Report</button>
