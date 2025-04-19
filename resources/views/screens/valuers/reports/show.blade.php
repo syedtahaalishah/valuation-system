@@ -7,7 +7,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    @include('includes.report-table')
+                    @include('includes.report.details')
                 </div>
                 <div class="mt-4">
                     <a href="{{ route('reports.index') }}" class="btn btn-secondary">Back to Reports</a>

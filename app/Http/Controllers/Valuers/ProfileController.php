@@ -19,7 +19,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('valuers.profile.index');
+        return view('screens.valuers.profile.index');
     }
 
     /**

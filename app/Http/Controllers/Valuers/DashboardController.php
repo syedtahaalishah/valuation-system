@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Valuers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('valuers.dashboard.index');
+        return view('screens.valuers.dashboard.index');
     }
 }

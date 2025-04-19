@@ -10,12 +10,12 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        return view('web.index');
+        return view('screens.web.index');
     }
 
     public function report(Report $report)
     {
-        return view('web.report', get_defined_vars());
+        return view('screens.web.report', get_defined_vars());
     }
 
     public function verify(Request $request)
@@ -34,7 +34,7 @@ class ReportController extends Controller
 
         return response()->json([
             'message' => 'This valuation report is authentic.',
-            'html' => view('includes.report-table', ['report' => $report])->render(),
+            'html' => view('includes.report.details', ['report' => $report])->render(),
         ], 200);
     }
 }

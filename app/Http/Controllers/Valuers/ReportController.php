@@ -35,20 +35,11 @@ class ReportController extends Controller
                         </form>';
                     return $btn;
                 })
-                ->addColumn('qr_code', function ($row) {
-                    return '<img src="' . $row->qr_code_url . '" width="100">';
-                })
-                ->editColumn('valuation_date', function ($row) {
-                    return Carbon::parse($row->valuation_date)->format('d/m/Y');
-                })
-                ->editColumn('market_value', function ($row) {
-                    return 'BWP ' . number_format($row->market_value, 2);
-                })
-                ->rawColumns(['action', 'qr_code'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
 
-        return view('valuers.reports.index');
+        return view('screens.valuers.reports.index');
     }
 
     /**
@@ -56,7 +47,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('valuers.reports.create');
+        return view('screens.valuers.reports.create');
     }
 
     /**
@@ -112,7 +103,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        return view('valuers.reports.show', get_defined_vars());
+        return view('screens.valuers.reports.show', get_defined_vars());
     }
 
     /**
@@ -120,7 +111,7 @@ class ReportController extends Controller
      */
     public function edit(Report $report)
     {
-        return view('valuers.reports.edit', get_defined_vars());
+        return view('screens.valuers.reports.edit', get_defined_vars());
     }
 
     /**

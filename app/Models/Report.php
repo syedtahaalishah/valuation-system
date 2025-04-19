@@ -35,6 +35,11 @@ class Report extends Model
         return asset('qrcodes/' . $this->qr_code);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

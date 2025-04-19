@@ -23,7 +23,11 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('includes.sidebar')
+        @if(Auth::guard('admin')->check())
+            @include('includes.admin.sidebar')
+        @else
+            @include('includes.valuer.sidebar')
+        @endif
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

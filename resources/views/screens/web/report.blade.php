@@ -11,7 +11,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 mb-2 text-gray-900">Valuation Report</h1>
-                                        @include('includes.report-table')
+                                        @include('includes.report.details')
                                         <a href="{{ route('web.index') }}" class="btn btn-primary">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-arrow-left"></i>

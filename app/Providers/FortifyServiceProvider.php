@@ -20,7 +20,12 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if (request()->is('admin/*')) {
+            config(['fortify.guard' => 'admin']);
+            config(['fortify.prefix' => 'admin']);
+            config(['fortify.passwords' => 'admins']);
+            config(['fortify.home' => 'admin/dashboard']);
+        }
     }
 
     /**
@@ -28,7 +33,12 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Fortify::viewPrefix('auth.');
+        if (request()->is('admin/*')) {
+            Fortify::viewPrefix('screens.admin.auth.');
+        }else{
+            Fortify::viewPrefix('screens.valuers.auth.');
+        }
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
