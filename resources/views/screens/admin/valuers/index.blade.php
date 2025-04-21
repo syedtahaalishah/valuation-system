@@ -39,14 +39,19 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
+    </script>
     <script>
         $(document).ready(function() {
+            $.LoadingOverlaySetup({
+                background: "rgba(0, 0, 0, 0.5)",
+                imageColor: "#140a62"
+            });
 
             $('#dataTable').DataTable({
                 processing: true,
@@ -88,44 +93,57 @@
 
         $(document).on("change", ".status", function() {
 
-            $.LoadingOverlay("show");
+            swal.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: 'Do you confirm your intention to change the status?',
+                showCancelButton: true,
+                confirmButtonColor: '#4e73df',
+                confirmButtonText: 'Yes, I am sure!',
+                cancelButtonText: 'No, cancel it!',
+            }).then(success => {
+                if (success.value) {
 
-            axios({
-                    method: "POST",
-                    url: $(this).data("action"),
-                    data: {
-                        id: $(this).data("id"),
-                        status: $(this).find(":selected").val(),
-                    },
-                })
-                .then(function(response) {
+                    $.LoadingOverlay("show");
 
-                    Swal.fire({
-                        timer: 3000,
-                        icon: 'success',
-                        iconColor: '#1cc88a',
-                        showConfirmButton: false,
-                        text: response.data.message,
-                    })
+                    axios({
+                            method: "POST",
+                            url: $(this).data("action"),
+                            data: {
+                                id: $(this).data("id"),
+                                status: $(this).find(":selected").val(),
+                            },
+                        })
+                        .then(function(response) {
 
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1000);
-                })
-                .catch(function(error) {
+                            Swal.fire({
+                                timer: 3000,
+                                icon: 'success',
+                                iconColor: '#1cc88a',
+                                showConfirmButton: false,
+                                text: response.data.message,
+                            })
 
-                    Swal.fire({
-                        timer: 3000,
-                        icon: 'error',
-                        iconColor: '#e02d1b',
-                        showConfirmButton: false,
-                        text: error.response.data.message,
-                    })
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1000);
+                        })
+                        .catch(function(error) {
 
-                })
-                .finally(() => {
-                    $.LoadingOverlay("hide");
-                });
+                            Swal.fire({
+                                timer: 3000,
+                                icon: 'error',
+                                iconColor: '#e02d1b',
+                                showConfirmButton: false,
+                                text: error.response.data.message,
+                            })
+
+                        })
+                        .finally(() => {
+                            $.LoadingOverlay("hide");
+                        });
+                }
+            });
         });
     </script>
 @endpush

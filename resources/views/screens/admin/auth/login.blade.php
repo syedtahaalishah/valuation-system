@@ -66,7 +66,7 @@
 
                     if (response.status === 200) {
                         setTimeout(() => {
-                            location.reload();
+                            window.location = "{{ route('admin.dashboard.index') }}";
                         }, 1000);
                     }
                 })

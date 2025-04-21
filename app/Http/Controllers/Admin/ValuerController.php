@@ -59,9 +59,9 @@ class ValuerController extends Controller
         ]);
     }
 
-    public function destroy(User $user)
+    public function destroy(User $valuer)
     {
-        $user->delete();
+        $valuer->delete();
         return redirect()->route('admin.valuers.index')->with('success', 'Valuer deleted successfully');
     }
 }

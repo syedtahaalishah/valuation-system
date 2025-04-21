@@ -53,7 +53,7 @@
 
     <!-- Nav Item - Report -->
     <li class="nav-item {{ request()->is('admin/activities') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin.reports.index') }}">
+        <a class="nav-link" href="{{ route('admin.activities.index') }}">
             <i class="far fa-eye"></i>
             <span>Activities</span></a>
     </li>

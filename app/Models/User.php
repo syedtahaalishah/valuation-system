@@ -51,4 +51,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Report::class);
     }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($user) {
+            $user->activities()->delete();
+            $user->valuationReports()->delete();
+        });
+    }
 }

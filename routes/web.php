@@ -7,6 +7,8 @@ use App\Http\Controllers\Valuers\ReportController as ValuerReport;
 
 use App\Http\Controllers\Admin\ReportController as AdminReport;
 use App\Http\Controllers\Admin\ValuerController as AdminValuer;
+use App\Http\Controllers\Admin\ProfileController as AdminProfile;
+use App\Http\Controllers\Admin\ActivityController as AdminActivity;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 
 
@@ -25,7 +27,6 @@ Route::middleware(['auth:web', AdminMiddleware::class])->group(function () {
     Route::group(['as' => 'profile.'], function () {
         Route::get('profile', [ProfileController::class, 'index'])->name('index');
         Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name('update');
-        Route::post('profile/picture', action: [ProfileController::class, 'updatePicture'])->name('picture.update');
         Route::post('profile/password', action: [ProfileController::class, 'updatePassword'])->name('password.update');
     });
     Route::resource('reports', ValuerReport::class);
@@ -37,14 +38,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->as('admin.')->group(function
         Route::get('dashboard', [AdminDashboard::class, 'index'])->name('index');
     });
     Route::group(['as' => 'profile.'], function () {
-        Route::get('profile', [ProfileController::class, 'index'])->name('index');
-        Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name('update');
-        Route::post('profile/picture', action: [ProfileController::class, 'updatePicture'])->name('picture.update');
-        Route::post('profile/password', action: [ProfileController::class, 'updatePassword'])->name('password.update');
+        Route::get('profile', [AdminProfile::class, 'index'])->name('index');
+        Route::post('profile/update', [AdminProfile::class, 'updateProfile'])->name('update');
+        Route::post('profile/password', action: [AdminProfile::class, 'updatePassword'])->name('password.update');
+    });
+    Route::group(['as' => 'activities.'], function () {
+        Route::get('activities', [AdminActivity::class, 'index'])->name('index');
     });
 
     Route::resource('reports', AdminReport::class)->only(['index', 'show', 'destroy']);
-
-    Route::post('valuers/status', [AdminValuer::class, 'valuerStatus'])->name('valuers.status');
     Route::resource('valuers', AdminValuer::class)->only(['index', 'show', 'destroy']);
+    Route::post('valuers/status', [AdminValuer::class, 'valuerStatus'])->name('valuers.status');
 });

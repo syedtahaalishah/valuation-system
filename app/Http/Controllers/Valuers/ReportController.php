@@ -70,6 +70,10 @@ class ReportController extends Controller
 
         $report = auth()->user()->valuationReports()->create($validated);
 
+        auth()->user()->activities()->create([
+            'activity' => auth()->user()->name.' created an report which serial number is #'.$report->serial_number,
+        ]);
+
         $directory = public_path('qrcodes');
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -131,6 +135,10 @@ class ReportController extends Controller
         ]);
 
         $report->update($validated);
+
+        auth()->user()->activities()->create([
+            'activity' => auth()->user()->name.' updated an report which serial number is #'.$report->serial_number,
+        ]);
 
         return response()->json([
             'message' => 'Report updated successfully',
