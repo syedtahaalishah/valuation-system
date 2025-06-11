@@ -253,7 +253,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright my-auto text-center">
-                        <span>Copyright &copy; Property Valuation Portal {{ date('Y') }}</span>
+                        <span>Copyright &copy; Authentic Report {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
